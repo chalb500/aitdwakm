@@ -1,0 +1,13 @@
+#pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gameContainer {
+  border-style: solid;
+  border-color: pink;
+  border-width: 1px;
+  width: 800px;
+  height: 600px;
+}
