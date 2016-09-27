@@ -10,10 +10,10 @@ HOW TO PLAY:
 - Type this into the browser "localhost"
 
 CONTROLS:
-W - move the player up
-A - move the player left
-S - move the player down
-D - move the player right
+- W: move the player up
+- A: move the player left
+- S: move the player down
+- D: move the player right
 
 TODO:
 - Constrain the game stage so that players cannot wander off the screen
