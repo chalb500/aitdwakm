@@ -1,20 +1,19 @@
-DESCRIPTION:
-This will be a multiplayer maze game.
+A multiplayer maze game.
 
 HOW TO PLAY:
-- Download and install Node on your computer (https://nodejs.org/en/)
-- Clone this repo
-- Open a command/terminal window
-- Navigate to the root folder where this project was cloned
-- Execute this command in ther command/terminal window "node app"
-- Open a browser window
-- Type this into the browser "localhost"
+1. Download and install Node on your computer (https://nodejs.org/en/)
+2. Clone this repo
+3. Open a command/terminal window
+4. Navigate to the root folder where this project was cloned
+5. Execute this command in ther command/terminal window "node app"
+6. Open a browser window
+7. Type this into the browser "localhost"
 
 CONTROLS:
-- W: Move the player up
-- A: Move the player left
-- S: Move the player down
-- D: Move the player right
+W - move the player up
+A - move the player left
+S - move the player down
+D - move the player right
 
 TODO:
 - Constrain the game stage so that players cannot wander off the screen

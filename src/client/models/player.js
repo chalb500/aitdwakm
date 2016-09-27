@@ -1,6 +1,6 @@
 function Player(name) {
-  this.id = null;
+  this.id = uuid.v1();
   this.name = name;
-  this.x = 0;
-  this.y = 0;
+  this.x = Math.floor((Math.random() * 200) + 50);
+  this.y = Math.floor((Math.random() * 200) + 50);
 }

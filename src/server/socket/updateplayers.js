@@ -1,10 +1,25 @@
 module.exports = function(io) {
   var players = [];
 
+  function findPlayerIndex(players, id) {
+    var foundPlayer = false;
+    for (var i = 0; i < players.length; i++) {
+      if (players[i].id === id) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
   io.on('connection', function(socket){
     socket.on('update players', function(player) {
-      //Add this player to the list of players
-      player.socketId = socket.id;
+
+      var index = findPlayerIndex(players, player.id);
+      if (index !== -1) {
+        players.splice(index, 1);
+      }
+
       players.push(player);
 
       //Send the list of players back to the
@@ -14,16 +29,10 @@ module.exports = function(io) {
 
     socket.on('disconnect', function() {
       //Remove this player
-      var player = null;
-      for(i = 0; i < players.length; i++) {
-        if (players[i].socketId == socket.id) {
-          player = players[i];
-        }
-      }
-
-      if (player != null) {
-        players.pop(player);
-      }
+      // var index = findPlayerIndex(players, player.id)
+      // if (index !== -1) {
+      //   players = players.splice(index, 1);
+      // }
 
       io.emit("update players", players);
     });
