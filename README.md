@@ -16,7 +16,10 @@ CONTROLS:
 - D: move the player right
 
 TODO:
+- Socket.io works for updates. Now, refactor game code to match test signatures
 - Constrain the game stage so that players cannot wander off the screen
-- Re-organize the project so that the tests are not deployed to the game server
-- Re-align the tests to the functionality
 - Have players disappear when they disconnect
+- Add the walls of the maze
+
+SOMEDAY:
+- Leverage Docker REST API instead of SSHing into game server for build process

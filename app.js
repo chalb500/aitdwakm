@@ -4,13 +4,13 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 //Public folder
-app.use(express.static('client'));
+app.use(express.static('./src/client'));
 
 //Socket files
-require('./server/socket/updateplayers')(io);
+require('./src/server/socket/updateplayers')(io);
 
 //Route files
-app.use('/', require('./server/routes/index'));
+app.use('/', require('./src/server/routes/index'));
 
 //Server information
 http.listen(80, function(){

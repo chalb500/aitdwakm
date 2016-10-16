@@ -1,9 +1,11 @@
-# use our prepared Raspberry Pi compatible Docker base image with Node.js
+# use the prepared Raspberry Pi compatible Docker base image with Node.js
 FROM hypriot/rpi-node:latest
 
-# make the src folder available in the docker image
-ADD . /src
-WORKDIR /src
+# add the source files to the docker image
+ADD src /game/src
+ADD package.json /game/
+ADD app.js /game/
+WORKDIR /game
 
 # install the dependencies from the package.json file
 RUN npm install

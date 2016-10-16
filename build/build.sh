@@ -15,6 +15,9 @@ ssh -T $HOST "mkdir workspace"
 #Copy the source code from the build server to the game box
 echo "Copying the source code from the Jenkins server to the game server."
 scp -r /var/lib/jenkins/workspace/AITDWAKM/src $HOST:/home/pi/workspace/src
+scp /var/lib/jenkins/workspace/AITDWAKM/Dockerfile $HOST:/home/pi/workspace
+scp /var/lib/jenkins/workspace/AITDWAKM/package.json $HOST:/home/pi/workspace
+scp /var/lib/jenkins/workspace/AITDWAKM/app.js $HOST:/home/pi/workspace
 
 #Look for dependent game server containers and remove them
 CONTAINERID=$(ssh -T $HOST "docker ps -a | grep \"$DOCKERCONTAINER\" | awk '{print \$1}'")
@@ -42,7 +45,8 @@ fi
 
 #Build the image
 echo "Building the game server image."
-ssh -T $HOST "cd workspace/src;docker build --tag $DOCKERIMAGE ."
+ssh -T $HOST "cd workspace;docker build --tag $DOCKERIMAGE ."
 
 #Run the game server image as a container in the background on port 80
+echo "Running the game server image on port 80."
 ssh -T $HOST "docker run -d -p 80:80 --name $DOCKERCONTAINER $DOCKERIMAGE"
