@@ -4,36 +4,32 @@
     <script src="/lib/jquery-3.1.0.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/lib/pixi.min.js"></script>
-    <script src="/models/game.js"></script>
-    <script src="/models/player.js"></script>
+    <script src="/models/canvas.js"></script>
     <script src="/models/controller.js"></script>
+    <script src="/models/clientsocket.js"></script>
+    <script src="/models/publisher.js"></script>
     <script src="/lib/uuid.js"></script>
     <link href="/css/master.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/game.css" rel="stylesheet" type="text/css" media="all" />
     <script>
       $(document).ready(function() {
-        var socket = io();
+        //Create a Publisher
+        var publisher = new Publisher();
 
-        //Create a new game
-        var game = new Game(socket);
+        var clientSocket = new ClientSocket(io());
+        clientSocket.Listen(publisher);
 
-        //Connect a controller to the game
-        var controller = new Controller();
+        //Initialize the canvas
+        var canvas = new Canvas(publisher);
+        canvas.Show();
+
+        //Tell the server to add "Bob" to the game
+        clientSocket.AddPlayer("Bob");
+
+        //draw bob, wires up his controller
+        var controller = new Controller(clientSocket);
         window.addEventListener("keydown", controller.keyDown.bind(controller), false);
         window.addEventListener("keyup", controller.keyUp.bind(controller), false);
-        game.connectController(controller);
-
-        //Add a player to the game
-        var player = new Player("test");
-        game.addPlayerToGame(player);
-
-        //start the game
-        game.start();
-
-        //socket
-        socket.on("update players", function(players) {
-          game.updatePlayers(players);
-        });
       });
     </script>
   </head>

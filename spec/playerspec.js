@@ -1,18 +1,24 @@
-describe("player", function() {
+var Player = require('./../src/server/models/player.js');
+
+describe("Player", function() {
   it ("has a name", function() {
-    var result;
-    expect(result).toBeDefined();
+    var player = new Player("Test");
+    expect(player.name).toEqual("Test");
   });
   it("has an id", function() {
-    var result;
-    expect(result).toBeDefined();
+    var player = new Player("Test");
+    expect(player.id).toBeDefined();
+  });
+  it("has a model name", function() {
+    var player = new Player("Test");
+    expect(player.modelName).toEqual("player");
   });
   it ("has an x coordinate", function() {
-    var result;
-    expect(result).toBeDefined();
+    var player = new Player("Test");
+    expect(player.x).toBeDefined();
   });
   it ("has a y coordinate", function() {
-    var result;
-    expect(result).toBeDefined();
+    var player = new Player("Test");
+    expect(player.y).toBeDefined();
   });
 });

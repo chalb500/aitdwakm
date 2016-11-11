@@ -1,4 +1,5 @@
-function Controller() {
+function Controller(clientSocket) {
+  this.clientSocket = clientSocket;
   this.x = 0;
   this.y = 0;
 }
@@ -21,6 +22,11 @@ Controller.prototype.keyDown = function(e) {
   if (this.keys[83]) {
     this.y += 5;
   }
+
+  this.clientSocket.SendCoordinates(this.clientSocket.ActivePlayerId, this.x, this.y);
+
+  this.x = 0;
+  this.y = 0;
 }
 
 Controller.prototype.keyUp = function(e) {

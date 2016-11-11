@@ -5,7 +5,7 @@ HOW TO PLAY:
 - Clone this repo
 - Open a command/terminal window
 - Navigate to the root folder where this project was cloned
-- Execute this command in ther command/terminal window "node app"
+- Execute this command in the command/terminal window "node app"
 - Open a browser window
 - Type this into the browser "localhost"
 
@@ -16,9 +16,7 @@ CONTROLS:
 - D: move the player right
 
 TODO:
-- Socket.io works for updates. Now, refactor game code to match test signatures
 - Constrain the game stage so that players cannot wander off the screen
-- Have players disappear when they disconnect
 - Add the walls of the maze
 
 SOMEDAY:

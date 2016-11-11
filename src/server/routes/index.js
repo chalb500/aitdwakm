@@ -7,6 +7,4 @@ router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/../../client/views/index.htm'));
 });
 
-//Player connected
-
 module.exports = router;
