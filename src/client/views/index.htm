@@ -20,8 +20,12 @@
         clientSocket.Listen(publisher);
 
         //Initialize the canvas
-        var canvas = new Canvas(publisher);
+        var canvas = new Canvas(publisher, 800, 600);
         canvas.Show();
+
+        //Tell the server to constrain its game area
+        //to match the canvas
+        clientSocket.SetGameSize(800, 600);
 
         //Tell the server to add "Bob" to the game
         clientSocket.AddPlayer("Bob");

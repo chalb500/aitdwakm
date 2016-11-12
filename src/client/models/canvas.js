@@ -1,12 +1,14 @@
-function Canvas(publisher) {
+function Canvas(publisher, width, height) {
   this.publisher = publisher;
+  this.width = width;
+  this.height = height;
 }
 
-Canvas.prototype.renderer = PIXI.autoDetectRenderer(800, 600);
+Canvas.prototype.renderer = PIXI.autoDetectRenderer(this.width, this.height);
 
 Canvas.prototype.stage = new PIXI.Container();
 
-Canvas.prototype.CreatePlayer = function(player) {
+Canvas.prototype.CreatePlayerSprite = function(player) {
   var sprite = PIXI.Sprite.fromImage("/assets/player.png");
   sprite.x = player.x;
   sprite.y = player.y;
@@ -45,7 +47,12 @@ Canvas.prototype.Receive = function(message) {
     //Update the canvas with the new player locations
     this.ClearStage();
     for (var i = 0; i < message.length; i++) {
-      this.AddPlayerToStage(this.CreatePlayer(message[i]));
+      var sprite = this.CreatePlayerSprite(message[i]);
+
+      //Tell the server about the sprite dimensions
+      this.publisher.SendMessage({modelName: "spriteDimensions", id: message[i].id, width: sprite.width, height: sprite.height});
+
+      this.AddPlayerToStage(sprite);
     }
   }
 }

@@ -21,4 +21,14 @@ describe("Player", function() {
     var player = new Player("Test");
     expect(player.y).toBeDefined();
   });
+
+  it ("has a sprite width", function() {
+    var player = new Player("Test");
+    expect(player.spriteWidth).toBe(0);
+  });
+  it ("has a sprite height", function() {
+    var player = new Player("Test");
+    expect(player.spriteHeight).toBe(0);
+  });
+
 });

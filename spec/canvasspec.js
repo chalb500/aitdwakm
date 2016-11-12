@@ -13,13 +13,22 @@ describe("Canvas", function(){
   it("Can create a new sprite for a player", function(){
     var publisher = new Publisher();
     var canvas = new Canvas(publisher);
-    var sprite = canvas.CreatePlayer(fakePlayer);
+    var sprite = canvas.CreatePlayerSprite(fakePlayer);
     expect(fakePlayer.x).toEqual(sprite.x);
+  });
+
+  it("Can clear the stage", function(){
+    var publisher = new Publisher();
+    var canvas = new Canvas(publisher);
+    var sprite = canvas.CreatePlayerSprite(fakePlayer);
+    canvas.AddPlayerToStage(sprite);
+    canvas.ClearStage();
+    expect(canvas.stage.children.length).toBe(0);
   });
   it("Can add a sprite to the stage", function(){
     var publisher = new Publisher();
     var canvas = new Canvas(publisher);
-    var sprite = canvas.CreatePlayer(fakePlayer);
+    var sprite = canvas.CreatePlayerSprite(fakePlayer);
     canvas.AddPlayerToStage(sprite);
     var foundSprite = undefined;
     for(var i = 0; i < canvas.stage.children.length;i++) {
@@ -29,14 +38,7 @@ describe("Canvas", function(){
     }
     expect(foundSprite.x).toEqual(sprite.x);
   });
-  it("Can clear the stage", function(){
-    var publisher = new Publisher();
-    var canvas = new Canvas(publisher);
-    var sprite = canvas.CreatePlayer(fakePlayer);
-    canvas.AddPlayerToStage(sprite);
-    canvas.ClearStage();
-    expect(canvas.stage.children.length).toBe(0);
-  });
+
   it("Can update a player's location on the stage", function(){
     var publisher = new Publisher();
     var canvas = new Canvas(publisher);

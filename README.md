@@ -16,8 +16,8 @@ CONTROLS:
 - D: move the player right
 
 TODO:
-- Constrain the game stage so that players cannot wander off the screen
 - Add the walls of the maze
+- Add the exit of the maze
 
 SOMEDAY:
 - Leverage Docker REST API instead of SSHing into game server for build process

@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 app.use(express.static('./src/client'));
 
 //Socket files
-require('./src/server/socket/serversocket')(io);
+require('./src/server/models/serversocket')(io);
 
 //Route files
 app.use('/', require('./src/server/routes/index'));

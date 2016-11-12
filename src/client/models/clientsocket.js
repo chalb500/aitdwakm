@@ -33,8 +33,21 @@ ClientSocket.prototype.SendCoordinates = function(playerId, x, y) {
   this.socket.emit('movePlayer', { id: playerId, x: x, y: y });
 }
 
+//Set the dimensions of the game
+ClientSocket.prototype.SetGameSize = function(width, height) {
+  this.socket.emit('setGameSize', { width: width, height: height });
+}
+
+ClientSocket.prototype.SetSpriteDimensions = function(spriteDimensions) {
+  this.socket.emit('setSpriteDimensions', spriteDimensions);
+}
+
+//Client socket can message itself
 ClientSocket.prototype.Receive = function(message) {
   if(message.modelName === "playerId" && this.ActivePlayerId === undefined) {
     this.ActivePlayerId = message.playerId;
+  }
+  else if (message.modelName === "spriteDimensions") {
+    this.SetSpriteDimensions(message);
   }
 }
